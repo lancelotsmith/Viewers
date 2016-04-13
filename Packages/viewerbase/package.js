@@ -149,6 +149,7 @@ Package.onUse(function(api) {
     api.addFiles('lib/queryStudies.js', 'client');
     api.addFiles('lib/exportStudies.js', 'client');
     api.addFiles('lib/importStudies.js', 'client');
+    api.addFiles('lib/anonymizeStudies.js', 'client');
     api.addFiles('lib/encodeQueryData.js', 'server');
 
     //api.export('accountsConfig', 'client');
@@ -171,6 +172,7 @@ Package.onUse(function(api) {
     api.export('getNumberOfFilesInStudy', 'client');
     api.export('exportStudies', 'client');
     api.export('importStudies', 'client');
+    api.export('anonymizeStudies', 'client');
     api.export('getActiveViewportElement', 'client');
     api.export('encodeQueryData', 'server');
 
