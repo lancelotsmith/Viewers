@@ -1,5 +1,3 @@
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
 export const DICOMWebRequestOptions = new SimpleSchema({
     auth: {
         type: String,
@@ -157,15 +155,5 @@ export const ServerConfiguration = new SimpleSchema({
     public: {
         type: PublicServerConfig,
         label: 'Public Server Configuration',
-    },
-    origin: {
-        type: String,
-        label: 'Origin',
-        optional: true
-    },
-    origin: {
-        type: String,
-        label: 'Origin',
-        optional: true
     }
 });
