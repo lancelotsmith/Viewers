@@ -4,6 +4,7 @@ Router.route(Settings.uri, function() {
     const request = this.request;
     const response = this.response;
     const params = this.params;
+    const requestOptions = params.query.options ? JSON.parse(params.query.options) : {};
 
     // If no Web Access to DICOM Objects (WADO) Service URL is provided
     // return an error for the request.
@@ -19,18 +20,25 @@ Router.route(Settings.uri, function() {
     // Create an object to hold the information required
     // for the request to the PACS. 
     let options = {
-        headers: request.headers,
+        headers: {},
         method: request.method,
         hostname: wadoUrl.hostname,
-        port: wadoUrl.port,
+        port: wadoUrl.port, //maybe null
         path: wadoUrl.path,
     };
 
+    if (request.headers['referer']) {
+        options.headers.referer = request.headers['referer'];
+    }
+    if (request.headers['user-agent']) {
+        options.headers['user-agent'] = request.headers['user-agent'];
+    }    
+
     // Retrieve the authorization user:password string for the PACS,
     // if one is required, and include it in the request to the PACS.
-    const wadoAuth = 'orthanc:orthanc'; // TODO: Retrieve this from the active server configuration
-    if (wadoAuth) {
-        options.auth = wadoAuth;
+    //const wadoAuth = 'orthanc:orthanc'; 
+    if (requestOptions.auth) {
+        options.auth = requestOptions.auth;
     }
 
     // Use Node's HTTP API to send a request to the PACS
