@@ -8,5 +8,5 @@ Meteor.startup(() => {
     console.log(JSON.stringify(config, null, 2));
 
     Meteor.settings = config;
-    check(config, ServerConfiguration);
+   // check(config, ServerConfiguration);
 });
